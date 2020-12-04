@@ -11,7 +11,9 @@ export class LoginComponent implements OnInit {
 
    email: string = '';
    password: string = '';
-   warningMessage: string;
+   email_validation: string = '';
+   password_validation: string = '';
+   response_error: string = '';
 
   constructor(private authService: AuthenticationService, private router: Router) { 
   }
@@ -22,18 +24,22 @@ export class LoginComponent implements OnInit {
   onLogIn() {
     this.authService.login(this.email, this.password)
     .subscribe(res => {
-      //check for errors
-      this.warningMessage = '';
-      if(Array.isArray(res)) {
-        this.warningMessage += res[0];
-      } 
-      // if not errors - navigate to home
-      if(!this.warningMessage)
         this.router.navigate(['home']);
     }, error => {
-      this.warningMessage = "Invalid Credentials!";
-      console.error(error);
-    } );
+      this.email_validation= '';
+      this.password_validation = '';
+      this.response_error = '';
+      if(error.error.email){
+       this.email_validation = error.error.email;
+      }
+      else if(error.error.password){
+       this.password_validation = error.error.password;
+      }
+      else{
+       this.response_error = error.error;
+      }
+      console.error(error.error);
+    });
   }
 
 }
