@@ -1,0 +1,150 @@
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark" style="margin-bottom: 0;">
+                            <li class="breadcrumb-item"><a routerLink="/admin/dashboard"><i class="fas fa-home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item"><a routerLink="/admin/view-clients">{{'Clients' | translate}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                {{'Add' | translate}}</li>
+                        </ol>
+                    </nav>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0" >
+                    <div class="col-md-12">
+
+                        <form [formGroup]="createClient" (ngSubmit)="onSubmitClient()">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="client_name">{{'End Client' | translate}}</label>
+                                    <input type="text" placeholder="{{'End Client' | translate}}" class="form-control mb-3" id="client_name"
+                                        formControlName="client_name"
+                                        [ngClass]="{ 'is-invalid': submittedCreateClient && cu.client_name.errors }" />
+
+                                    <div *ngIf="submittedCreateClient" class="invalid-feedback">
+                                        <div *ngIf="cu.client_name.errors && cu.client_name.errors.required">{{'End Client is required' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="company_name">{{'CBRE Client' | translate}}</label>
+                                    <input type="text" placeholder="{{'CBRE Client' | translate}}" class="form-control mb-3"
+                                        id="company_name" formControlName="company_name"
+                                        [ngClass]="{ 'is-invalid': submittedCreateClient && cu.company_name.errors }" />
+                                    <div *ngIf="submittedCreateClient"
+                                        class="invalid-feedback">
+                                        <div *ngIf="cu.company_name.errors && cu.company_name.errors.required">{{'CBRE Client is required' | translate}}</div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="contact_person_name">{{'Contacted Person Name' | translate}}</label>
+                                    <input type="text" placeholder="{{'Contacted Person Name' | translate}}" class="form-control mb-3" id="contact_person_name"
+                                        formControlName="contact_person_name"
+                                        [ngClass]="{ 'is-invalid': submittedCreateClient && cu.contact_person_name.errors }" />
+
+                                    <div *ngIf="submittedCreateClient" class="invalid-feedback">
+                                        <div *ngIf="cu.contact_person_name.errors && cu.contact_person_name.errors.required">{{'Contacted Person Name is required' | translate}}</div>
+                                    </div>
+                                </div>
+                               
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="email">{{'Email' | translate}}</label>
+                                    <input type="email" placeholder="{{'Email' | translate}}" class="form-control mb-3" id="email"
+                                        formControlName="email"
+                                        [ngClass]="{ 'is-invalid': submittedCreateClient && cu.email.errors }" />
+                                    <div *ngIf="submittedCreateClient" class="invalid-feedback">
+                                        <div *ngIf="cu.email.errors && cu.email.errors.required">{{'Email is required' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="emailTo">{{'Secondar Email' | translate}}</label>
+                                    <input type="email" placeholder="{{'Optional Second Email' | translate}}" class="form-control mb-3" id="email2"
+                                        formControlName="email2"
+                                        [ngClass]="{ 'is-invalid': submittedCreateClient && cu.email2.errors }" />
+                                    <div *ngIf="submittedCreateClient" class="invalid-feedback">
+                                        <div *ngIf="cu.email2.errors && cu.email2.errors.required">{{'Email Second is required' | translate}}</div>
+                                        <div *ngIf="cu.email2.errors && cu.email2.errors.email">{{'Email is not valid' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="phone">{{'Phone' | translate}}</label>
+                                    <ngx-intl-tel-input
+                                    *ngIf="dataToEdit == 'edit'"
+                                    [ngClass]="{ 'is-invalid iti--separate-dial-code1': submittedCreateClient && cu.phone.errors }" 
+                                    [cssClass]="'form-control mb-3'" 
+                                    [preferredCountries]="preferredCountries" 
+                                    [enableAutoCountrySelect]="true"
+                                    [value]="'+91 8888888888'"
+                                    [searchCountryFlag]="true"
+                                    name="phone" 
+                                    formControlName="phone"
+                                    [phoneValidation]="false"
+                                    [separateDialCode]="separateDialCode"
+                                    name="phone" 
+                                    formControlName="phone">
+                                </ngx-intl-tel-input>
+                                    <!-- <input type="text" ng2TelInput placeholder="{{'Phone' | translate}}" class="form-control mb-3" id="phone"
+                                        formControlName="phone"
+                                        [ngClass]="{ 'is-invalid': submittedCreateClient && cu.phone.errors }" /> -->
+                                    <div *ngIf="submittedCreateClient" class="invalid-feedback">
+                                        <div *ngIf="cu.phone.errors.required">{{'Phone To is required' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="is_active">{{'Status' | translate}}</label>
+                                    <select class="form-control " id="is_active" formControlName="is_active"
+                                        [ngClass]="{ 'is-invalid': submittedCreateClient && cu.is_active.errors }">
+                                        <option value="">{{'Select Status' | translate}}</option>
+                                        <option value="1">{{'Active' | translate}}</option>
+                                        <option value="0">{{'Inactive' | translate}}</option>
+                                    </select>
+                                    <span class="svg-icon">
+                                        <svg width="20px" height="20px" viewBox="0 0 16 16"
+                                            class="bi bi-chevron-down" fill="currentColor"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                    </span>
+                                    <div *ngIf="submittedCreateClient" class="invalid-feedback">
+                                        <div *ngIf="cu.is_active.errors.required">{{'Status is required' | translate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="buttons">
+                                    <a routerLink="/admin/view-clients"
+                                        class="btn btn-secondary">{{'Cancel' | translate}}</a>
+                                    <button type="submit" class="btn btn-primary">{{'Save' | translate}}</button>
+                                    
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

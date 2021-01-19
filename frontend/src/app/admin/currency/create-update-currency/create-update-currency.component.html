@@ -1,0 +1,158 @@
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark" style="margin-bottom: 0;">
+                            <li class="breadcrumb-item"><a routerLink="/admin/dashboard"><i class="fas fa-home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item"><a routerLink="/admin/dashboard">{{'Dashboard' | translate}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" routerLink="/admin/view-currency">
+                                {{'Currencies' | translate}}</li>
+                        </ol>
+                    </nav>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0" *ngIf="dataToEdit">
+                    <div class="col-md-12">
+
+                        <form [formGroup]="createCurrency" (ngSubmit)="onSubmitCurrency()">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="title">{{'Title' | translate}}</label>
+                                    <input type="text" placeholder="{{'Title' | translate}}" class="form-control mb-3" id="title"
+                                        formControlName="title"
+                                        [ngClass]="{ 'is-invalid': submittedCreateCurrency && cu.title.errors }" />
+
+                                    <div *ngIf="submittedCreateCurrency && cu.title.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.title.errors.required">{{'Title is required' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group  col-lg-6" *ngIf="currency_details.length > 0">
+                                    <label class="form-control-label" for="input-country">{{'Symbol | Code ( Just Select Code From Suggestions If Any )' | translate}}</label>
+                                    <ng-select
+                                    (change) = "updateCurrencyNgModel($event)"                                         
+                                    [items]="currency_details" 
+                                    bindLabel="new_name"
+                                    autofocus
+                                    bindValue="currency_code"
+                                    [ngModel]="symbol" 
+                                    [ngModelOptions]="{standalone: true}">
+                                     </ng-select>
+                                     <div *ngIf="submittedCreateLocation && cu.symbol.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.symbol.errors.required">{{'Symbol is required' | translate}}</div>
+                                       </div>
+                                </div>
+      
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="symbol_position">{{'Symbol Direction' | translate}}</label>
+                                    <select class="form-control mb-3" id="symbol_position" formControlName="symbol_position"
+                                        [ngClass]="{ 'is-invalid': submittedCreateCurrency && cu.symbol_position.errors }">
+                                        <option value="l">{{'Left' | translate}}</option>
+                                        <option value="r">{{'Right' | translate}}</option>
+                                    </select>
+                                    <div *ngIf="submittedCreateCurrency && cu.symbol_position.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="cu.symbol_position.errors.required">{{'Symbol Direction is required' | translate}}</div>
+                                    </div>
+                                </div>
+                               <!--  <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="symbol">{{'Symbol' | translate}}</label>
+                                    <input type="email" placeholder="{{'Symbol' | translate}}" class="form-control mb-3"
+                                        id="symbol" formControlName="symbol"
+                                        [ngClass]="{ 'is-invalid': submittedCreateCurrency && cu.symbol.errors }" />
+                                    <div *ngIf="submittedCreateCurrency && cu.symbol.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="cu.symbol.errors.required">{{'Symbol is required' | translate}}</div>
+                                    </div>
+                                </div> -->
+
+
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="is_default">{{'Default' | translate}}</label>
+                                    <select class="form-control mb-3" id="is_default" formControlName="is_default"
+                                        [ngClass]="{ 'is-invalid': submittedCreateCurrency && cu.is_default.errors }">
+                                        <option value="0">{{'NO' | translate}}</option>
+                                        <option value="1">{{'YES' | translate}}</option>
+                                    </select>
+                                    <div *ngIf="submittedCreateCurrency && cu.is_default.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="cu.is_default.errors.required">{{'Default Value is required' | translate}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="code">{{'Code' | translate}}</label>
+                                    <input type="text" placeholder="{{'Code' | translate}}" class="form-control mb-3" id="code"
+                                        formControlName="code"
+                                        [ngClass]="{ 'is-invalid': submittedCreateCurrency && cu.code.errors }" />
+
+                                    <div *ngIf="submittedCreateCurrency && cu.code.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.code.errors.required">{{'Code is required' | translate}}</div>
+                                        <div *ngIf="cu.code.errors.pattern">{{'Code Can Have Only 3 Characters A-Z' | translate}}</div>
+                                    </div>
+                                </div>                           
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="decimal_point">{{'Decimal Point' | translate}}</label>
+                                    <input type="number" placeholder="{{'Decimal Point' | translate}}" class="form-control mb-3"
+                                        id="decimal_point" formControlName="decimal_point"
+                                        [ngClass]="{ 'is-invalid': submittedCreateCurrency && cu.decimal_point.errors }" />
+                                    <div *ngIf="submittedCreateCurrency && cu.decimal_point.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="cu.decimal_point.errors.required">{{'Decimal Points is required' | translate}}</div>
+                                        <!-- <div *ngIf="cu.decimal_point.errors.pattern">Value Should Be Integer And In Decimal Points</div> -->
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="value">{{'Value' | translate}}</label>
+                                    <input type="number" placeholder="{{'Value' | translate}}" class="form-control mb-3" id="value"
+                                        formControlName="value"
+                                        [ngClass]="{ 'is-invalid': submittedCreateCurrency && cu.value.errors }" />
+                                    <div *ngIf="submittedCreateCurrency && cu.value.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.value.errors.required">{{'Value is required' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="is_active">{{'Status' | translate}}</label>
+                                    <select class="form-control mb-3" id="is_active" formControlName="is_active"
+                                        [ngClass]="{ 'is-invalid': submittedCreateCurrency && cu.is_active.errors }">
+                                        <option value="1">{{'Active' | translate}}</option>
+                                        <option value="0">{{'DeActive' | translate}}</option>
+                                    </select>
+                                    <div *ngIf="submittedCreateCurrency && cu.is_active.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.is_active.errors.required">{{'Value is required' | translate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="buttons">
+                                    <a routerLink="/admin/view-currency"
+                                        class="btn btn-secondary">{{'Cancel' | translate}}</a>
+                                    <button type="submit" class="btn btn-primary">{{'Save Changes' | translate}}</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

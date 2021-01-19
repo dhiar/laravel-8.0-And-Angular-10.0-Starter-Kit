@@ -1,0 +1,90 @@
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-bloc">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark" style="margin-bottom: 0;">
+                            <li class="breadcrumb-item"><a routerLink="/admin/dashboard"><i class="fas fa-home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item"><a routerLink="/admin/dashboard">{{'Dashboard' | translate}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" routerLink="/admin/view-role">
+                                {{'Roles' | translate}}</li>
+                        </ol>
+                    </nav>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <div class="col-md-12">
+                        <div class="row justify-content-end">
+                            <div class="buttons">
+                                <button type="button" (click)="getallSel()" class="btn btn-primary">{{'Select All' | translate}}</button>
+                            </div>
+                        </div>
+                        <form  >
+                            <div class="row">
+                                <ng-container *ngFor="let per of all">
+                                    <h6 *ngIf="per.name == 'View Countries'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Countries' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View States'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'States' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Cities'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Cities' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Languages'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Languages' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Currencies'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Currencies' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Zones'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Zones' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Locations'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Locations' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Users'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Users' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Roles'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Roles' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'Update Permissions'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Permissions' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Clients'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Clients' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Agency'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Agency' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Work Force Category'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Work Force Category' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Discipline'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Discipline' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Task'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Task' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Task Category'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Task Category' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Qoutation'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Qoutation' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Material'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Material' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Material Category'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Material Category' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Material Vendor'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Material Vendor' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Material Manufacturer'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Material Manufacturer' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Material Distributor'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Material Distributor' | translate}}</h6>
+                                    <h6 *ngIf="per.name == 'View Unit'" class="col-lg-12 h2  d-inline-block mb-3" style="color: #5e72e4">{{'Unit' | translate}}</h6>
+
+                                    <div class="form-group col-lg-3">
+                                        <input type="checkbox" [checked]="per.checked" (change)="per.checked = !per.checked" style="margin-right:2px;"> 
+    
+                                        <label class="form-control-label" for="{{per.name}}">
+                                            {{per.name}}
+                                        </label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="buttons">
+                                    <a routerLink="/admin/view-permission"
+                                        class="btn btn-secondary">{{'Cancel' | translate}}</a>
+                                    <button type="button" (click)="add()" class="btn btn-primary">{{'Save Changes' | translate}}</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark" style="margin-bottom: 0;">
+                            <li class="breadcrumb-item"><a routerLink="/admin/dashboard"><i class="fas fa-home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item"><a routerLink="/admin/dashboard">{{'Dashboard' | translate}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" routerLink="/admin/view-language">
+                                {{'Languages' | translate}}</li>
+                        </ol>
+                    </nav>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0" *ngIf="dataToEdit">
+                    <div class="col-md-12">
+
+                        <form [formGroup]="createLanguage" (ngSubmit)="onSubmitLanguage()">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="name">{{'Name' | translate}}</label>
+                                    <input type="text" placeholder="{{'Name' | translate}}" class="form-control mb-3" id="name"
+                                        formControlName="name"
+                                        [ngClass]="{ 'is-invalid': submittedCreateLanguage && cu.name.errors }" />
+
+                                    <div *ngIf="submittedCreateLanguage && cu.name.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.name.errors.required">{{'Name is required' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="short_code">{{'Short Code' | translate}}</label>
+                                    <input type="text" placeholder="{{'Short Code' | translate}}" class="form-control mb-3" id="short_code"
+                                        formControlName="short_code"
+                                        [ngClass]="{ 'is-invalid': submittedCreateLanguage && cu.short_code.errors }" />
+
+                                    <div *ngIf="submittedCreateLanguage && cu.short_code.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.short_code.errors.required">{{'Short Code is required' | translate}}</div>
+                                        <div *ngIf="cu.short_code.errors.pattern">{{'Short Code is Must in Small Case And Only Of Two Letters' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="image">{{'Language Image' | translate}}</label>
+                                    <input
+                                    class="form-control mb-3"
+                                    (change)="upload($event)"
+                                     name="image"
+                                     type="file"
+                                     accept="image/*"
+                                     />
+                                    <img *ngIf="currentImage" [src] = "this.apiUrl + currentImage" class="img-pic"/>
+                                </div>
+                                
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="is_active">{{'Status' | translate}}</label>
+                                    <select class="form-control mb-3" id="is_active" formControlName="is_active"
+                                        [ngClass]="{ 'is-invalid': submittedCreateLanguage && cu.is_active.errors }">
+                                        <option value="1">{{'Active' | translate}}</option>
+                                        <option value="0">{{'DeActive' | translate}}</option>
+                                    </select>
+                                    <div *ngIf="submittedCreateLanguage && cu.is_active.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.is_active.errors.required">{{'Status is required' | translate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="buttons">
+                                    <a routerLink="/admin/view-language"
+                                        class="btn btn-secondary">{{'Cancel' | translate}}</a>
+                                    <button type="submit" class="btn btn-primary">{{'Save Changes' | translate}}</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

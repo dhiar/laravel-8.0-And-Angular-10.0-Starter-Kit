@@ -1,0 +1,170 @@
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+            
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block" >
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark" style="margin-bottom: 0;">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)" routerLink="/admin/dashboard"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)" routerLink="/admin/view-users">{{'Users' | translate}}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{'Add' | translate}}</li>
+                </ol>
+            </nav>
+            </div>
+            
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+
+<!-- Page content -->
+<div class="container-fluid mt--6" >
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <div class="col-md-12" >
+
+                        <form [formGroup]="createUser" (ngSubmit)="onSubmitUser()">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="first_name">{{'First Name' | translate}}</label>
+                                    <input type="text" placeholder="First Name"
+                                    class="form-control mb-3" id="first_name" formControlName="first_name" [ngClass]="{ 'is-invalid': submittedCreateUser && cu.first_name.errors }"/>
+                                    <div *ngIf="submittedCreateUser && cu.first_name.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.first_name.errors.required">{{'First Name is required' | translate}}</div>
+                                        <div *ngIf="cu.first_name.errors.pattern">{{'Enter Alphabets only' | translate}}</div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="last_name">{{'Last Name' | translate}}</label>
+                                    <input type="text" placeholder="Last Name"
+                                    class="form-control mb-3" id="last_name" formControlName="last_name" [ngClass]="{ 'is-invalid': submittedCreateUser && cu.last_name.errors }"/>
+                                    <div *ngIf="submittedCreateUser && cu.last_name.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.last_name.errors.required">{{'Last Name is required' | translate}}</div>
+                                        <div *ngIf="cu.last_name.errors.pattern">{{'Enter Alphabets only' | translate}}</div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="email">{{'Email' | translate}}</label>
+                                    <input type="email" placeholder="Email"
+                                    class="form-control mb-3" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submittedCreateUser && cu.email.errors }"/>
+                                    
+
+                                    <div *ngIf="submittedCreateUser && cu.email.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.email.errors.required">{{'Email is required' | translate}}</div>
+                                        <div *ngIf="cu.email.errors.pattern">{{'Email is not valid' | translate}}</div>
+
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="second_email">{{'Secondary Email' | translate}}</label>
+                                    <input type="email" placeholder="Optional Email"
+                                    class="form-control mb-3" id="second_email" formControlName="second_email"  [ngClass]="{ 'is-invalid': submittedCreateUser && cu.second_email.errors }"/>
+                                    
+                                    <div *ngIf="submittedCreateUser && cu.second_email.errors" class="invalid-feedback">
+                                        
+                                        <div *ngIf="cu.second_email.errors.pattern">{{'Email is not valid' | translate}}</div>
+
+                                        
+                                    </div>
+                                </div>        
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="phone">{{'Phone' | translate}}</label>
+                                    <input type="number" placeholder="Phone"
+                                    class="form-control mb-3" id="phone" formControlName="phone" [ngClass]="{ 'is-invalid': submittedCreateUser && cu.phone.errors }"/>        
+                                    <div *ngIf="submittedCreateUser && cu.phone.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.phone.errors.required">{{'Phone is required' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 form-group" *ngIf="roles.length > 0">
+                                    <label class="form-control-label" for="input-country">{{'Role' | translate}}</label>
+                                    <ng-select
+                                          
+                                    formControlName="role_id" 
+                                    [items]="roles" 
+                                    bindLabel="name"
+                                    autofocus
+                                    bindValue="id" [ngClass]="{ 'is-invalid': submittedCreateUser && cu.role_id.errors }">
+                                     </ng-select>
+                                     <!-- <span *ngIf="(error$ | async)?.role_id" class="validation-span">{{ (error$ |
+                                        async)?.role_id }}</span> -->
+
+                                        <div *ngIf="submittedCreateUser && cu.role_id.errors" class="invalid-feedback">
+                                            <div *ngIf="cu.role_id.errors.required">{{'Role is required' | translate}}</div>
+                                        </div>
+                            </div>
+                                <div class="col-lg-6 form-group">
+                                        <label class="form-control-label" for="input-country">{{'Country' | translate}}</label>
+                                        <ng-select
+                                         
+                                        formControlName="country"                            (change)="updateCountryNgModel($event)"
+                                        [items]="countries" 
+                                        bindLabel="name"
+                                        autofocus
+                                        bindValue="id"
+                                        
+                                       >
+                                         </ng-select>
+                                         <!-- <span *ngIf="(error$ | async)?.country_id" class="validation-span">{{ (error$ |
+                                            async)?.country_id }}</span> -->
+                                </div>
+                                <div class="col-lg-6" >
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-country">{{'City' | translate}}</label>
+                                        <ng-select
+                                        formControlName="city"                                   
+                                        [items]="cities" 
+                                        bindLabel="name"
+                                        autofocus
+                                        bindValue="id">
+                                         </ng-select>
+                                         <!-- <span *ngIf="(error$ | async)?.city_id" class="validation-span">{{ (error$ |
+                                            async)?.city_id }}</span> -->
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="phone">{{'Password' | translate}}</label>
+                                    <input type="password" placeholder="Password"
+                                    class="form-control mb-3" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submittedCreateUser && cu.password.errors }"/>
+                                    
+
+                                    <div *ngIf="submittedCreateUser && cu.password.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.password.errors.required">{{'Password is required' | translate}}</div>
+                                    </div>
+                                    <div class="text-danger" style="font-size: 12px;">
+                                        {{message}}
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                            </div>
+                            
+
+                            <div class="row justify-content-end">
+                                <div class="buttons">
+                                    <button routerLink="/admin/view-users" class="btn btn-secondary">{{'Cancel' | translate}}</button>
+                                    <button type="submit" class="btn btn-primary">{{'Save' | translate}}</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>

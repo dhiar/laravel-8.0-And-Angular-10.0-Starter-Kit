@@ -1,0 +1,127 @@
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">{{'Locations' | translate}}</h6>
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark" style="margin-bottom: 0;">
+                            <li class="breadcrumb-item"><a routerLink="/admin/dashboard"><i class="fas fa-home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item"><a routerLink="/admin/dashboard">{{'Dashboard' | translate}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" routerLink="/admin/view-location">
+                                {{'Locations' | translate}}</li>
+                        </ol>
+                    </nav>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0" *ngIf="dataToEdit">
+                    <div class="col-md-12">
+
+                        <form [formGroup]="createLocation" (ngSubmit)="onSubmitLocation()">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="name">{{'Title' | translate}}</label>
+                                    <input type="text" placeholder="{{'Title' | translate}}" class="form-control mb-3" id="name"
+                                        formControlName="name"
+                                        [ngClass]="{ 'is-invalid': submittedCreateLocation && cu.name.errors }" />
+
+                                    <div *ngIf="submittedCreateLocation && cu.name.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.name.errors.required">{{'Title is required' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group  col-lg-6" *ngIf="countries.length > 0">
+                                        <label class="form-control-label" for="input-country">{{'Country' | translate}}</label>
+                                        <ng-select
+                                        (change) = "updateCountryNgModel($event)"                                         
+                                        [items]="countries" 
+                                        bindLabel="name"
+                                        autofocus
+                                        bindValue="id"
+                                        [ngModel]="country_id" 
+                                        [ngModelOptions]="{standalone: true}">
+                                         </ng-select>
+                                         <div *ngIf="submittedCreateLocation && cu.country_id.errors" class="invalid-feedback">
+                                            <div *ngIf="cu.country_id.errors.required">{{'Country is required' | translate}}</div>
+                                           </div>
+                                </div>
+                                <div class="form-group  col-lg-6" *ngIf="cstates.length > 0">
+                                        <label class="form-control-label" for="input-country">{{'State' | translate}}</label>
+                                        <ng-select
+                                        (change) = "updateStateNgModel($event)"                                         
+                                        [items]="cstates" 
+                                        bindLabel="name"
+                                        autofocus
+                                        bindValue="id"
+                                        [ngModel]="cstate_id" 
+                                        [ngModelOptions]="{standalone: true}">
+                                         </ng-select>
+                                </div>
+                                <div class="form-group  col-lg-6" *ngIf="cities.length > 0">
+                                        <label class="form-control-label" for="input-country">{{'City' | translate}}</label>
+                                        <ng-select
+                                        (change) = "updateCityNgModel($event)"                                         
+                                        [items]="cities" 
+                                        bindLabel="name"
+                                        autofocus
+                                        bindValue="id"
+                                        [ngModel]="city_id" 
+                                        [ngModelOptions]="{standalone: true}">
+                                         </ng-select>
+                                </div>
+                                <div class="form-group  col-lg-6" *ngIf="zones.length > 0">
+                                        <label class="form-control-label" for="input-country">{{'Zone' | translate}}</label>
+                                        <ng-select
+                                        [ngClass]="{'invalid': submittedCreateLocation && cu.zone_id.errors}"
+                                        (change) = "updateZoneNgModel($event)"                                         
+                                        [items]="zones" 
+                                        bindLabel="name"
+                                        autofocus
+                                        bindValue="id"
+                                        [ngModel]="zone_id" 
+                                        [ngModelOptions]="{standalone: true}">
+                                         </ng-select>
+                                         <span *ngIf="submittedCreateLocation && cu.zone_id.errors" class="validation-span">
+                                            <div *ngIf="cu.zone_id.errors.required">{{'Zone is required' | translate}}</div>
+                                         </span>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-control-label" for="is_active">{{'Status' | translate}}</label>
+                                    <select class="form-control mb-3" id="is_active" formControlName="is_active"
+                                        [ngClass]="{ 'is-invalid': submittedCreateCurrency && cu.is_active.errors }">
+                                        <option value="1">{{'Active' | translate}}</option>
+                                        <option value="0">{{'DeActive' | translate}}</option>
+                                    </select>
+                                    <div *ngIf="submittedCreateCurrency && cu.is_active.errors" class="invalid-feedback">
+                                        <div *ngIf="cu.is_active.errors.required">{{'Value is required' | translate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="buttons">
+                                    <a routerLink="/admin/view-location"
+                                        class="btn btn-secondary">{{'Cancel' | translate}}</a>
+                                    <button type="submit" class="btn btn-primary">{{'Save Changes' | translate}}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

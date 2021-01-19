@@ -23,6 +23,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\ForceJsonResponse::class,
         \App\Http\Middleware\Cors::class,
+        \Fruitcake\Cors\HandleCors::class,
+
 
 
     ];
@@ -46,6 +48,9 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\AuthkeyMiddleware::class,
+            \Fruitcake\Cors\HandleCors::class,
+
         ],
     ];
 
@@ -69,7 +74,7 @@ class Kernel extends HttpKernel
         'json.response' => \App\Http\Middleware\ForceJsonResponse::class,
         'shanzay_middleware_jo_auth_check_kry_ga' => \App\Http\Middleware\shanzay_middleware_jo_auth_check_kry_ga::class,
         'shanzay_middleware_jo_custom_logic_check_kry_ga' => \App\Http\Middleware\shanzay_middleware_jo_custom_logic_check_kry_ga::class,
-        'cors' => \App\Http\Middleware\Cors::class,
+        'cors' =>  \Fruitcake\Cors\HandleCors::class,
 
 
     ];

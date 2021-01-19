@@ -1,0 +1,4 @@
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home/softwaresbrandin/public_html/crm_updated
+        - /bin/cp -r * $DEPLOYPATH
