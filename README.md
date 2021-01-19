@@ -36,9 +36,11 @@ Quick start With Admin Template for Laravel 8.0 + Angular 10.0 With NGRX project
 
 - run `php artisan key:generate` to generate app key.
 
-- In migrations, the default user is created for which username is **"admin@admin.com"** and password is **"12345qwe"**.
+- import sql file placed in root directory
 
-## Client
+- In migrations, the default user is created for which username is **"admin@gmail.com"** and password is **"123456"**.
+
+## frontend
 - Open *Client* folder in terminal/console and run `npm install` to install all dependencies.
 
 - Add URL to your local server to  `/Client/src/environments/environment.ts`.
