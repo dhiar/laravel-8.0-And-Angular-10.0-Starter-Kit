@@ -13,16 +13,16 @@ Quick start With Admin Template for Laravel 8.0 + Angular 10.0 With NGRX project
 - Login components
 - i18n
 
+<div style="margin-bottom : 30px;">
+	<img src="./login_page.png" width="800" alt="Laravel + Angular Logo"/>
+</div>
+<div style="margin-bottom : 30px;" >
+	<img src="./dashboard.png" width="800" alt="Laravel + Angular Logo"/>
+</div>
+<div style="margin-bottom : 30px;">
+	<img src="./listing.png" width="800" alt="Laravel + Angular Logo"/>
+</div>
 
-<div>
-	<img src="./logo.png" width="800" alt="Laravel + Angular Logo"/>
-</div>
-<div >
-	<img src="./logo.png" width="800" alt="Laravel + Angular Logo"/>
-</div>
-<div >
-	<img src="./logo.png" width="800" alt="Laravel + Angular Logo"/>
-</div>
 
 ### Back-end:
 - Composer build file
