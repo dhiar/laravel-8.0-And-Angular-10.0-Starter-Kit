@@ -2,8 +2,8 @@
 	<img src="./logo.png" width="400" alt="Laravel + Angular Logo"/>
 </div>
 
-# Laravel + Angular Boilerplate
-Quick start for Laravel 8.0 + Angular 10.0 projects with JWT auth.
+# Laravel + Angular + Ngrx (State Management) + i18n Admin Template
+Quick start With Admin Template for Laravel 8.0 + Angular 10.0 With NGRX projects with JWT auth.
 
 ## Includes:
 
@@ -11,6 +11,18 @@ Quick start for Laravel 8.0 + Angular 10.0 projects with JWT auth.
 - Angular CLI boilerplate files
 - JWT authentication service
 - Login components
+- i18n
+
+
+<div>
+	<img src="./logo.png" width="800" alt="Laravel + Angular Logo"/>
+</div>
+<div >
+	<img src="./logo.png" width="800" alt="Laravel + Angular Logo"/>
+</div>
+<div >
+	<img src="./logo.png" width="800" alt="Laravel + Angular Logo"/>
+</div>
 
 ### Back-end:
 - Composer build file
