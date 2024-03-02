@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\WorkforceDecipline;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 class WorkForceDisciplineController extends Controller
 {
   public function __construct(workforceDecipline $workforceDecipline)
@@ -62,7 +62,7 @@ class WorkForceDisciplineController extends Controller
           $add_workforceDiscipline = [
               'status' => false,
               'success' => 0,
-              'message' => $validator->messages()
+              'message' => $validator->errors()
           ];
           return response()->json($add_workforceDiscipline);
       }
@@ -137,7 +137,7 @@ class WorkForceDisciplineController extends Controller
               $edit_Discipline = [
                   'status' => 'false',
                   'success' => '0',
-                  'message' => $validator->messages()
+                  'message' => $validator->errors()
               ];
               return response()->json($edit_Discipline);
           }

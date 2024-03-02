@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\unit;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class UnitController extends Controller
 {
+  protected $unit;
   public function __construct(unit $unit)
   {
     $this->unit = $unit;
@@ -43,7 +44,7 @@ public function activefetchUnit(){
         $add_unit = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($add_unit);
     }
@@ -128,7 +129,7 @@ public function activefetchUnit(){
                  $edit_unit = [
                      'status' => 'false',
                      'success' => '0',
-                     'message' => $validator->messages()
+                     'message' => $validator->errors()
                  ];
                  return response()->json($edit_unit);
              }

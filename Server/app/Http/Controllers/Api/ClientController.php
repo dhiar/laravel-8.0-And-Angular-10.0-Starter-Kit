@@ -5,16 +5,17 @@ use App\Http\Controllers\Controller;
 
 use App\Models\WorkRoles;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Client;
 
 class ClientController extends Controller
 {
+    protected $Client;
 
-  public function __construct(Client $Client)
-  {
-    $this->Client = $Client;
-  }
+    public function __construct(Client $Client)
+    {
+        $this->Client = $Client;
+    }
     public function getAllClient(Request $request){
       if($request->searchText){
           $Client = $this->Client->fetchClientForSearch($request->searchColum,$request->searchText);
@@ -53,7 +54,7 @@ class ClientController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -94,7 +95,7 @@ class ClientController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -177,7 +178,7 @@ class ClientController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }

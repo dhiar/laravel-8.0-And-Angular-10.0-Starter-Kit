@@ -7,14 +7,15 @@ use App\Models\WorkforceNature;
 use Illuminate\Http\Request;
 
 use App\Models\Discipline;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class DisciplineController extends Controller
 {
-  public function __construct(Discipline $Discipline)
-  {
-    $this->Discipline = $Discipline;
-  }
+    protected $Discipline;
+    public function __construct(Discipline $Discipline)
+    {
+        $this->Discipline = $Discipline;
+    }
     public function getAllDiscipline(Request $request){
       if($request->searchText){
           $Discipline = $this->Discipline->fetchDisciplineForSearch($request->searchColum,$request->searchText);
@@ -43,7 +44,7 @@ class DisciplineController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -109,7 +110,7 @@ class DisciplineController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }

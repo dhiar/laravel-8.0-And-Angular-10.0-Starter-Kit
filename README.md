@@ -36,6 +36,12 @@ Quick start With Admin Template for Laravel 8.0 + Angular 10.0 With NGRX project
 
 - run `php artisan key:generate` to generate app key.
 
+- run `php artisan serve`
+
+docker exec -i vue-starter-db -c "PGPASSWORD=123456 psql -U mydata -h localhost -p 5432 mydata" < melody_pre_20230129.sql 
+
+cat lara_angular.sql | docker exec -i vue-starter-db bash -c "/usr/bin/mysql -u root --password=123456 antrian"
+
 - import sql file placed in root directory
 
 - In migrations, the default user is created for which username is **"admin@gmail.com"** and password is **"123456"**.

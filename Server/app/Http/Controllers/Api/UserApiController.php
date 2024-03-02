@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
 use DB;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 class UserApiController extends Controller
 {
   public function __construct(User $User)
@@ -47,7 +47,7 @@ class UserApiController extends Controller
         $add_user = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($add_user);
     }
@@ -181,7 +181,7 @@ class UserApiController extends Controller
               $edit_user = [
                   'status' => 'false',
                   'success' => '0',
-                  'message' => $validator->messages()
+                  'message' => $validator->errors()
               ];
               return response()->json($edit_user);
           }
@@ -232,7 +232,7 @@ class UserApiController extends Controller
             $user_token = [
                 'status' => 'false',
                 'success' => '0',
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($user_token);
         }
@@ -253,7 +253,7 @@ class UserApiController extends Controller
                    ->subject('Mail from Wise Store Apps');
                  });
                  if($code){
-                   $user_token=
+                   $user_token=[
                      'ForgetToken' => $code,
                      'success' => 1,
                      'message' => 'User Forget Password Token',
@@ -280,7 +280,7 @@ class UserApiController extends Controller
            $user_pass_update = [
                'status' => 'false',
                'success' => '0',
-               'message' => $validator->messages()
+               'message' => $validator->errors()
            ];
            return response()->json($user_pass_update);
        }

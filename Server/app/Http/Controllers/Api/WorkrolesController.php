@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Contract_types;
 use Illuminate\Http\Request;
 use App\Models\WorkRoles;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class WorkrolesController extends Controller
 {
@@ -41,7 +41,7 @@ class WorkrolesController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -108,7 +108,7 @@ class WorkrolesController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }

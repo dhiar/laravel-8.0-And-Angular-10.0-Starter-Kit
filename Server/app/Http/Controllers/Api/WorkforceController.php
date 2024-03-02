@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Workforce;
 use App\Models\WorkforceNature;
 use App\Models\User;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Hash;
 use DB;
 class WorkforceController extends Controller
@@ -57,7 +57,7 @@ class WorkforceController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -171,7 +171,7 @@ class WorkforceController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }

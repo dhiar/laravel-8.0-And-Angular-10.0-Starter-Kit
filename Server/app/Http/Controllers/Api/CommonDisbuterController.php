@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\CommonDistributor;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class CommonDisbuterController extends Controller
 {
+  protected $commondistributor;
   public function __construct(commondistributor $commondistributor)
   {
     $this->commondistributor = $commondistributor;
@@ -43,7 +44,7 @@ class CommonDisbuterController extends Controller
         $add_CommonDistributor = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($add_CommonDistributor);
     }
@@ -124,7 +125,7 @@ class CommonDisbuterController extends Controller
                  $edit_CommonDistributor = [
                      'status' => 'false',
                      'success' => '0',
-                     'message' => $validator->messages()
+                     'message' => $validator->errors()
                  ];
                  return response()->json($edit_CommonDistributor);
              }

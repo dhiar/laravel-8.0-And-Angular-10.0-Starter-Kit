@@ -23,7 +23,8 @@
     "sweetalert2": "^8.19.0",
     "vform": "^1.0.1",
     "vue-i18n": "^8.22.1",
-    "vue-router": "^3.4.8"
+    "vue-router": "^3.4.8",
+    "@angular-material-extensions/select-country": "^2.2.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.1.2",

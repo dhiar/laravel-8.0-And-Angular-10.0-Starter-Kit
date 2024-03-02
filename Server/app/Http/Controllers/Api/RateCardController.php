@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\workforce_category;
 
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 class RateCardController extends Controller
 {
   public function __construct(workforce_rate_card $workforce_rate_card)
@@ -48,7 +48,7 @@ class RateCardController extends Controller
           $add_RateCard = [
               'status' => false,
               'success' => 0,
-              'message' => $validator->messages()
+              'message' => $validator->errors()
           ];
           return response()->json($add_RateCard);
       }
@@ -128,7 +128,7 @@ class RateCardController extends Controller
               $edit_ratecard = [
                   'status' => 'false',
                   'success' => '0',
-                  'message' => $validator->messages()
+                  'message' => $validator->errors()
               ];
               return response()->json($edit_ratecard);
           }

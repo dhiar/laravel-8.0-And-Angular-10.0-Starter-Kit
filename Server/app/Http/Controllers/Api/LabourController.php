@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Site;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Workforce;
 
 class LabourController extends Controller
@@ -82,7 +82,7 @@ class LabourController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -128,7 +128,7 @@ class LabourController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }

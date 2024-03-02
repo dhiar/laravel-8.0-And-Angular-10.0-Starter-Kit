@@ -5,14 +5,16 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Contract_types;
-use Validator;
+use Illuminate\Support\Facades\Validator;
+
 
 class ContracttypeController extends Controller
 {
-  public function __construct(Contract_types $Contract_types)
-  {
-    $this->Contract_types = $Contract_types;
-  }
+    protected $Contract_types;
+    public function __construct(Contract_types $Contract_types)
+    {
+        $this->Contract_types = $Contract_types;
+    }
     public function contractTypeList(Request $request){
       if($request->searchText){
           $Contract_types = $this->Contract_types->fetchcontactTypesForSearch($request->searchColum,$request->searchText);
@@ -39,7 +41,7 @@ class ContracttypeController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -105,7 +107,7 @@ class ContracttypeController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }

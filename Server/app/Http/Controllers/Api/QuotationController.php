@@ -13,12 +13,13 @@ use App\Models\projectTasksAssignee;
 use App\Models\projectMaterials;
 use App\Models\projectAdditionalCharges;
 use App\Models\Site;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 class QuotationController extends Controller
 {
 
+  protected $quotations;
   public function __construct(Quotations $quotations)
   {
     $this->quotations = $quotations;

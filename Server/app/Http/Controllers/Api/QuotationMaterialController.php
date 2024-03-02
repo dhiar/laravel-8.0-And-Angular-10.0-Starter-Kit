@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Quotations_Materials;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class QuotationMaterialController extends Controller
@@ -24,7 +24,7 @@ class QuotationMaterialController extends Controller
           $add_quotation_material = [
               'status' => false,
               'success' => 0,
-              'message' => $validator->messages()
+              'message' => $validator->errors()
           ];
           return response()->json($add_quotation_material);
       }

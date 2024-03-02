@@ -5,7 +5,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ApplicationPipesModule } from '../customPipes/customPipe.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+// import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -100,7 +100,7 @@ import { ExcelService } from '../service/excel.service';
   imports: [
     CommonModule,
     FormsModule,
-    NgxIntlTelInputModule,
+    // NgxIntlTelInputModule,
     ReactiveFormsModule,
     AdminRoutingModule,
     SharedModule,

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\agencies;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
 class AgencyController extends Controller
 {
+  protected $agencies;
   public function __construct(agencies $agencies)
   {
     $this->agencies = $agencies;
@@ -50,7 +51,7 @@ class AgencyController extends Controller
           $add_agency = [
               'status' => false,
               'success' => 0,
-              'message' => $validator->messages()
+              'message' => $validator->errors()
           ];
           return response()->json($add_agency);
       }
@@ -153,7 +154,7 @@ class AgencyController extends Controller
               $edit_agency = [
                   'status' => 'false',
                   'success' => '0',
-                  'message' => $validator->messages()
+                  'message' => $validator->errors()
               ];
               return response()->json($edit_agency);
           }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\material;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 class MaterialApiController extends Controller
 {
   public function __construct(material $material)
@@ -51,7 +51,7 @@ class MaterialApiController extends Controller
         $add_material = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($add_material);
     }
@@ -149,7 +149,7 @@ if($material = material::create($data)){
                  $edit_material = [
                      'status' => 'false',
                      'success' => '0',
-                     'message' => $validator->messages()
+                     'message' => $validator->errors()
                  ];
                  return response()->json($edit_material);
              }

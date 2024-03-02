@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\workforcecategory;
 
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 class WorkForceCategoryController extends Controller
 {
   public function __construct(workforcecategory $workforcecategory)
@@ -53,7 +53,7 @@ public function ActiveFetchworkforcecategory(){
           $add_RateCard = [
               'status' => false,
               'success' => 0,
-              'message' => $validator->messages()
+              'message' => $validator->errors()
           ];
           return response()->json($add_RateCard);
       }
@@ -133,7 +133,7 @@ public function ActiveFetchworkforcecategory(){
               $edit_ratecard = [
                   'status' => 'false',
                   'success' => '0',
-                  'message' => $validator->messages()
+                  'message' => $validator->errors()
               ];
               return response()->json($edit_ratecard);
           }

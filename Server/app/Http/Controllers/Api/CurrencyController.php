@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\currencies;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use DB;
 class CurrencyController extends Controller
 {
+  protected $currencies;
   public function __construct(currencies $currencies)
   {
     $this->currencies = $currencies;

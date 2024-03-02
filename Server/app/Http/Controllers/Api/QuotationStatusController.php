@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\quotation_status;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class QuotationStatusController extends Controller
@@ -42,7 +42,7 @@ class QuotationStatusController extends Controller
           $add_quotation_status = [
               'status' => false,
               'success' => 0,
-              'message' => $validator->messages()
+              'message' => $validator->errors()
           ];
           return response()->json($add_quotation_status);
       }
@@ -116,7 +116,7 @@ class QuotationStatusController extends Controller
         $edit_quotationStatus = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($edit_quotationStatus);
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Manufacturers;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ManufacturerController extends Controller
@@ -43,7 +43,7 @@ class ManufacturerController extends Controller
         $add_manufacturer = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($add_manufacturer);
     }
@@ -124,7 +124,7 @@ class ManufacturerController extends Controller
                  $edit_Manufacturers = [
                      'status' => 'false',
                      'success' => '0',
-                     'message' => $validator->messages()
+                     'message' => $validator->errors()
                  ];
                  return response()->json($edit_Manufacturers);
              }

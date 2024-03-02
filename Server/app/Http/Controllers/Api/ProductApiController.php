@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\product_vender;
 use App\Models\product_category;
 
-use Validator;
+use Illuminate\Support\Facades\Validator;
 class ProductApiController extends Controller
 {
 
@@ -50,7 +50,7 @@ class ProductApiController extends Controller
         $add_Product_vender = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($add_Product_vender);
     }
@@ -152,7 +152,7 @@ class ProductApiController extends Controller
                  $edit_product_vender = [
                      'status' => 'false',
                      'success' => '0',
-                     'message' => $validator->messages()
+                     'message' => $validator->errors()
                  ];
                  return response()->json($edit_product_vender);
              }
@@ -188,7 +188,7 @@ class ProductApiController extends Controller
              //       $add_product_category = [
              //           'status' => 'false',
              //           'success' => '0',
-             //           'message' => $validator->messages()
+             //           'message' => $validator->errors()
              //       ];
              //       return response()->json($add_product_category);
              //   }

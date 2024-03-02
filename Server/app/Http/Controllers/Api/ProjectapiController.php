@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use http\Env\Response;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
 use App\Models\projectTasks;
 use App\Models\projectTasksAssignee;

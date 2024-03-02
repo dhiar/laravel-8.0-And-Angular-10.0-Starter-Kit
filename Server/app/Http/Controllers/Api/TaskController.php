@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Task;
 
 class TaskController extends Controller
@@ -50,7 +50,7 @@ class TaskController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -92,7 +92,7 @@ class TaskController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }

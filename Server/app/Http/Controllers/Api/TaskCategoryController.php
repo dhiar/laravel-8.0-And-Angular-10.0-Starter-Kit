@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\taskCategory;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 class TaskCategoryController extends Controller
 {
   public function __construct(taskCategory $taskCategory)
@@ -60,7 +60,7 @@ class TaskCategoryController extends Controller
         $add_task_category = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($add_task_category);
     }
@@ -141,7 +141,7 @@ class TaskCategoryController extends Controller
                  $edit_material_category = [
                      'status' => 'false',
                      'success' => '0',
-                     'message' => $validator->messages()
+                     'message' => $validator->errors()
                  ];
                  return response()->json($edit_material_category);
              }

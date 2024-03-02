@@ -5,17 +5,18 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Site;
 use App\Models\Zone;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class SiteController extends Controller
 {
-  public function __construct(Site $Site)
-  {
-    $this->Site = $Site;
-  }
+    protected $Site;
+    public function __construct(Site $Site)
+    {
+        $this->Site = $Site;
+    }
     public function getAllSite(Request $request){
       if($request->searchText){
           $Site = $this->Site->fetchSiteForSearch($request->searchColum,$request->searchText);
@@ -63,7 +64,7 @@ class SiteController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -120,7 +121,7 @@ class SiteController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }
@@ -229,7 +230,7 @@ class SiteController extends Controller
             $response = [
                 'status' => false,
                 'success' => 0,
-                'message' => $validator->messages()
+                'message' => $validator->errors()
             ];
             return response()->json($response);
         }

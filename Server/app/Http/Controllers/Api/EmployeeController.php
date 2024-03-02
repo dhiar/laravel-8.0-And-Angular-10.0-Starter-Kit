@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\employee_detail;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+  protected $employee_detail;
   public function __construct(employee_detail $employee_detail)
   {
     $this->employee_detail = $employee_detail;
@@ -41,7 +42,7 @@ class EmployeeController extends Controller
         $add_employee_detail = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($add_employee_detail);
     }
@@ -125,7 +126,7 @@ class EmployeeController extends Controller
                  $edit_employee_detail = [
                      'status' => 'false',
                      'success' => '0',
-                     'message' => $validator->messages()
+                     'message' => $validator->errors()
                  ];
                  return response()->json($edit_employee_detail);
              }

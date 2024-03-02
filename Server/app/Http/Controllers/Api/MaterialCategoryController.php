@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\material_catrgory;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use DB;
 class MaterialCategoryController extends Controller
 {
@@ -59,7 +59,7 @@ class MaterialCategoryController extends Controller
         $add_material_category = [
             'status' => 'false',
             'success' => '0',
-            'message' => $validator->messages()
+            'message' => $validator->errors()
         ];
         return response()->json($add_material_category);
     }
@@ -140,7 +140,7 @@ class MaterialCategoryController extends Controller
                  $edit_material_category = [
                      'status' => 'false',
                      'success' => '0',
-                     'message' => $validator->messages()
+                     'message' => $validator->errors()
                  ];
                  return response()->json($edit_material_category);
              }

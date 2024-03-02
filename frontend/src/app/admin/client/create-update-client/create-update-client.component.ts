@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConfigService } from 'src/app/service/config.service';
 import * as fromCountry from '../../../store/country/country.reducer';
-import { SearchCountryField, TooltipLabel, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+// import { SearchCountryField, PhoneNumberFormat } from 'ngx-intl-tel-input';
 @Component({
   selector: 'app-create-update-client',
   templateUrl: './create-update-client.component.html',
@@ -11,10 +11,9 @@ import { SearchCountryField, TooltipLabel, CountryISO, PhoneNumberFormat } from 
 })
 export class CreateUpdateClientComponent extends AppComponentBase {
   separateDialCode = true;
-	SearchCountryField = SearchCountryField;
-	TooltipLabel = TooltipLabel;
+	// SearchCountryField = SearchCountryField;
 	CountryISO = [];
-  PhoneNumberFormat = PhoneNumberFormat;
+  // PhoneNumberFormat = PhoneNumberFormat;
 	preferredCountries = [];
   public createClient: any;
   submittedCreateClient = false;
